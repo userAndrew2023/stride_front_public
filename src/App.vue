@@ -1,30 +1,25 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <x-header></x-header>
+    <router-view :key="$route.fullPath"></router-view>
+  </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');html {
   text-align: center;
-  color: #2c3e50;
+  font-family: Nunito, sans-serif;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+:root {
+  --color-grey: grey;
+  --color-black: #0a0a0a;
+  --color-sale: #f56827;
 }
 </style>
+<script setup lang="ts">
+import XHeader from "@/components/XHeader.vue";
+import MainContent from "@/components/MainContent.vue";
+import XCart from "@/components/XCart.vue";
+
+</script>

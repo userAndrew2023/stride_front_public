@@ -1,9 +1,10 @@
 <script setup lang="ts">
 
+import HeaderActionIcons from "@/components/HeaderActionIcons.vue";
 </script>
 
 <template>
-  $END$
+  <header-action-icons></header-action-icons>
 </template>
 
 <style scoped>
