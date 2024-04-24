@@ -23,15 +23,19 @@ function timeout(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function fetchData(filters: object[]) {
-  const queryString = filters.map(obj => `${encodeURIComponent(obj.name)}=${encodeURIComponent(obj.value)}`).join('&');
-   await axios.get('http://192.168.0.102:80/products/', {
+async function fetchData(filters: object[], search?: string) {
+  let url = 'http://192.168.0.102:80/products/?public=true'
+  if (search) {
+    url += "&q=" + search;
+  }
+  console.log(url);
+   await axios.get(url, {
     headers: {
       'Access-Control-Allow-Origin': '*'
     }
   })
   .then(function (response) {
-    products.value = response.data['data']['products'];
+    products.value = response.data['products'];
   });
   loading.value = false;
 }
@@ -81,22 +85,22 @@ function deleteMoreFromCart(index: number) {
 }
 
 // eslint-disable-next-line no-undef
-let props = defineProps(['filters']);
-fetchData(props.filters);
+let props = defineProps(['filters', 'search']);
+fetchData(props.filters, props.search);
 
 </script>
 
 <template>
   <div class="grid_wrapper">
     <h1 class="main_title">КРОССОВКИ</h1>
-    <div class="product_count">100 товаров</div>
+    <div class="product_count">{{ products.length }} products</div>
     <div class="grid_container" v-if="!loading">
       <div v-for="(product, index) in products" :key="index" class="grid_item">
         <img width="100%" :src="product.photo" alt="">
         <div class="product_title">{{ product.name }}</div>
         <div class="price_container">
-          <div class="price">{{ prettyPrice(product.sale_price) }} ₽</div>
-          <div class="old_price"><s>{{ prettyPrice(product.price) }} ₽</s></div>
+          <div class="price">{{ prettyPrice(product.price) }} ₽</div>
+          <div class="old_price"><s>{{ prettyPrice(product.old_price) }} ₽</s></div>
         </div>
         <div class="add_to_cart" v-if="products[index].in_cart == 0" @click="addToCart(index)">В корзину</div>
         <div class="in_cart" v-else>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import SearchInput from './SearchInput.vue';
 
 const showDropdown = ref(false);
 
@@ -10,7 +11,6 @@ const navigate = (option: string) => {
 
 <template>
   <div class="header_action_icons">
-    <span class="material-symbols-outlined header_action_icon">search</span>
     <span class="material-symbols-outlined header_action_icon" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">account_circle</span>
     <div v-if="showDropdown" class="dropdown-menu" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
       <span class="dropdown-item" @click="$router.push('profile')">Профиль</span>
@@ -64,7 +64,7 @@ const navigate = (option: string) => {
   padding: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1; /* Ensure the dropdown is above other elements */
-  left: 50%; /* Place it at 50% of the parent container */
+  left: 20px; /* Place it at 50% of the parent container */
   transform: translateX(-50%); /* Translate it back by half of its own width */
 }
 

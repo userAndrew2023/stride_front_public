@@ -1,13 +1,21 @@
 <script setup lang="ts">
+import router from '@/router';
+import SearchInput from './SearchInput.vue';
+
+function sendSearchRequest(searchRequest: string) {
+  console.log(searchRequest);
+  router.push("/search?query=" + searchRequest)
+}
 
 </script>
 
 <template>
   <div class="header_categories">
-    <div class="header_category"><router-link class="link" to="/sneakers">КРОССОВКИ</router-link></div>
-    <div class="header_category"><router-link class="link" to="/accessories">АКСЕССУАРЫ</router-link></div>
-    <div class="header_category"><router-link class="link" to="/sales">АКЦИИ %</router-link></div>
-    <div class="header_category"><router-link class="link" to="/info">ИНФОРМАЦИЯ</router-link></div>
+    <div class="header_category">
+      <div class="search_wrapper">
+        <SearchInput @send-search-request="sendSearchRequest"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,6 +36,8 @@
 }
 
 .header_category {
+  display: flex;
+  align-items: center;
   transition: 0.3s;
 }
 </style>

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw, useRoute } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MainContent from '../components/MainContent.vue'
 import XCart from '../components/XCart.vue'
@@ -39,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/orders',
     name: 'orders',
     component: XOrders,
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: MainContent
   }
 ]
 

@@ -1,21 +1,18 @@
 <script setup lang="ts">
 
-import XFilters from "@/components/XFilters.vue";
 import ProductGrid from "@/components/ProductGrid.vue";
 import {ref} from "vue";
+import { useRoute } from "vue-router";
 
 const filters = ref([]);
 
-const setFilters = (new_filters: never[]) => {
-  filters.value = [...new_filters];
-}
+let search = useRoute().query.query ?? "";
 
 </script>
 
 <template>
   <div class="container">
-    <x-filters @set-filters="setFilters"></x-filters>
-    <product-grid :filters="filters" :key="filters.length"></product-grid>
+    <product-grid :filters="filters" :key="filters.length" :search="search"></product-grid>
   </div>
 </template>
 

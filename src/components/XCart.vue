@@ -79,7 +79,7 @@ function prettyPrice(price: number | string) {
 function getSum() {
   let sum = 0;
   cartStuff.value.forEach(element => {
-    sum += element.quantity * element.product.sale_price
+    sum += element.quantity * element.product.price
   });
   return promoPercent.value > 0 ? sum - subtractPercentage(sum, promoPercent.value) : sum;
 }
@@ -87,7 +87,7 @@ function getSum() {
 function getSumWithoutPromo() {
   let sum = 0;
   cartStuff.value.forEach(element => {
-    sum += element.quantity * element.product.sale_price
+    sum += element.quantity * element.product.price
   });
   return sum;
 }
@@ -193,8 +193,8 @@ fetchData();
               </div>
             </div>
             <div class="stuff_price">
-              <div class="stuff_all_price">{{ prettyPrice(item.product.sale_price * item.quantity) }} ₽</div>
-              <div class="stuff_one_price">{{ prettyPrice(item.product.sale_price) }} ₽ / шт.</div>
+              <div class="stuff_all_price">{{ prettyPrice(item.product.price * item.quantity) }} ₽</div>
+              <div class="stuff_one_price">{{ prettyPrice(item.product.price) }} ₽ / шт.</div>
               <div class="delete_item">
                 <span class="material-symbols-outlined" @click="deleteAllFromCart(index)">
                   delete
@@ -243,7 +243,8 @@ fetchData();
       </div>
     </div>
     <div v-else>
-      Корзина пуста
+      <img src="@/assets/cart-empty.png" style="margin-top: 200px">
+      <h1>В КОРЗИНЕ НИЧЕГО НЕТ</h1>
     </div>
   </div>
 </template>
@@ -400,7 +401,7 @@ hr {
   text-align: center;
 }
 .promo_confirm {
-  display: flexConfirm;
+  display: flex;
   align-items: center;
   padding: 10px;
   border-radius: 10px;
