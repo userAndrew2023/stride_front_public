@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import MainContent from '../components/MainContent.vue'
 import XCart from '../components/XCart.vue'
 import XOrders from '@/components/XOrders.vue'
+import PageNotFound from '@/components/PageNotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -44,7 +45,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/search',
     name: 'search',
     component: MainContent
+  },
+  { 
+    path: "/:catchAll(.*)",
+    component: PageNotFound
   }
+
 ]
 
 const router = createRouter({

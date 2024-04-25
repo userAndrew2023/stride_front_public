@@ -41,7 +41,7 @@ fetchData();
 <template>
   <div v-if="orders.length > 0" >
     <div v-for="(item, index) in orders" :key="index">
-      <div class="order-cart">
+      <div class="order-cart" style="margin-top: 100px">
         <div style="margin-top: 30px">
           <div>Заказ #{{ item.id }}</div>
           <h2>{{ ordersStatuses[item.status] }}</h2>
@@ -59,7 +59,7 @@ fetchData();
             <hr>
           </div>
         </div>
-        <div text-align: right>
+        <div style="text-align: right; margin-top: 30px">
           <div v-if="!item.payment_status" :class="[checkOrderActive ? 'check_order' : 'disabled_checkout']" @click="checkOrderActive ? checkout(item.id) : null">
             Оплатить заказ
           </div>
