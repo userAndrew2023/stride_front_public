@@ -15,7 +15,6 @@ const navigate = (option: string) => {
     <div v-if="showDropdown" class="dropdown-menu" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
       <span class="dropdown-item" @click="$router.push('profile')">Профиль</span>
       <span class="dropdown-item" @click="$router.push('orders')">Заказы</span>
-      <span class="dropdown-item" @click="$router.push('payments')">Платежи</span>
     </div>
     <div>
       <span class="material-symbols-outlined header_action_icon shopping_cart">

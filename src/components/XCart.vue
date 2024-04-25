@@ -24,13 +24,16 @@ async function checkout() {
       quantity: element.quantity
     })
   });
-  const json = JSON.stringify({
+  let jsonObject = {
     user_id: 1,
     delivery_address: deliveryAddress.value,
     comment: comment.value.length > 0 ? comment.value : null,
     stuff: stuff,
-    promo_code: orderPromo.value
-  });
+  }
+  if (orderPromo.value.length > 0) {
+    jsonObject['promo_code'] = orderPromo.value;
+  }
+  const json = JSON.stringify(jsonObject);
   await axios.post('http://192.168.0.102:80/orders/', json, {
     headers: {
       'Content-Type': 'application/json',
